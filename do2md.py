@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 import json
 import codecs
 import sys
@@ -36,7 +35,8 @@ def entry2md(entry):
         filename = date.strftime("%Y-%b-%d_%H-%m-%S")+".md"
         print filename
         #Add date as the title
-        text = "# "+str(date)+"\n\n"+entry['text']
+        e_t = entry.get('text',"")
+        text = "# "+str(date)+"\n\n"+e_t
 	#for some reason, "." and () are escaped
 	text = text.replace("\.",".").replace("\(","(")\
                    .replace("\)",")").replace("\-","-")
@@ -59,7 +59,7 @@ def entry2md(entry):
 			    photos[p['identifier']] = "%s.%s" %(p['md5'],p['type'])
 		for ph in photos:
 			original = "![](dayone-moment://%s)" %ph
-			new = "![](photos/%s)" %photos[ph]
+			new = "![](../photos/%s)" %photos[ph]
 			text = text.replace(original,new)
         #we add tags at the end of the text
 	text += "\n\n%s" %tags

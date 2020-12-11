@@ -1,0 +1,6 @@
+[source]
+----
+mkdir primary
+cd primary
+python ../do2md.py ../Primary.json
+----
